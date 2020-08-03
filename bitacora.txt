@@ -1,0 +1,21 @@
+
+ytdevs videos 12-13 (configuracion de redux y firebase)
+
+
+- npm install 
+    redux-thunk
+    redux-logger
+    bootswatch
+    firebase
+    jsonwebtoken
+    react-toastify
+
+-create firebase proyect, database, auth with email/pass, storage
+
+-create fbConfig 
+-impor all in index.json
+-create store, provider, rootReducer
+
+- npm install @material-ui/core
+
+   

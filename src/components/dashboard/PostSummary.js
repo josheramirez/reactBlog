@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 function PostSummary({post}) {
 
     return (
-        <Link to="/post/23">
+        <Link to={"/post/"+post.id}>
         <div className="card z-depth-0 project-summary">
             <div className="card-content grey-text text-darken-3">
                 <span className="card-title">{post.titulo}</span>
