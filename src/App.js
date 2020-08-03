@@ -18,7 +18,7 @@ class App extends Component{
     return (
       <BrowserRouter>    
         <div className="App">
-        {/* <NavBar/> */}
+        <NavBar/>
         <Switch>
         <Route path='/signin' component={SignIn}/>
         <Route path='/post/:id' component={PostDetails}/>

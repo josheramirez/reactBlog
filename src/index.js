@@ -18,10 +18,20 @@ import {createStore,applyMiddleware,compose} from 'redux';
 import fbConfig from './config/fbConfig'
 import firebase from "firebase/app";
 
+import { useSelector  } from 'react-redux'
+import { isLoaded  } from 'react-redux-firebase';
+
+
 // import "bootswatch/dist/superhero/bootstrap.min.css"; 
 // import "bootswatch/dist/sketchy/bootstrap.min.css";
 
 // const store=createStore(rootReducer,applyMiddleware(thunk,logger));
+
+function AuthIsLoaded({ children }) {
+  const auth = useSelector(state => state.firebase.auth)
+  if (!isLoaded(auth)) return <div></div>;
+  return children
+}
 
 const store=createStore(rootReducer,
   compose(
@@ -40,7 +50,9 @@ const rrfProps = {
 ReactDOM.render(
   <Provider store={store}>
    <ReactReduxFirebaseProvider {...rrfProps}>
-    <App />
+      <AuthIsLoaded>
+        <App />
+      </AuthIsLoaded>
    </ReactReduxFirebaseProvider>
   </Provider>,
       // <Provider store={store}>
