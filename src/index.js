@@ -5,20 +5,20 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 
-import {Provider} from 'react-redux';
+import {Provider, useSelector} from 'react-redux';
 import rootReducer from './reducers/rootReducer';
 
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
+
 import {reduxFirestore,getFirestore,createFirestoreInstance} from 'redux-firestore';
-import {ReactReduxFirebaseProvider,getFirebase} from 'react-redux-firebase';
+import {ReactReduxFirebaseProvider,getFirebase,siLoaded} from 'react-redux-firebase';
 
 
-import {createStore,applyMiddleware,compose} from 'redux';
+import {createStore,applyMiddleware,compose,combineReducers} from 'redux';
 import fbConfig from './config/fbConfig'
 import firebase from "firebase/app";
-
-import { useSelector  } from 'react-redux'
+// import 'firebase/auth'
 import { isLoaded  } from 'react-redux-firebase';
 
 
@@ -33,18 +33,25 @@ function AuthIsLoaded({ children }) {
   return children
 }
 
-const store=createStore(rootReducer,
+const store=createStore(
+  rootReducer,
   compose(
     applyMiddleware(thunk.withExtraArgument({getFirebase,getFirestore})),
-    reduxFirestore(fbConfig)
+    reduxFirestore(firebase,fbConfig)
   )
-);
+)
+
+const rrfConfig = {
+  userProfile: 'users',
+  useFirestoreForProfile: true
+}
 
 const rrfProps = {
   firebase,
-  config: fbConfig,
+  // config: fbConfig,
+  config: rrfConfig, fbConfig,
   dispatch: store.dispatch,
-  createFirestoreInstance
+  createFirestoreInstance,
 };
 
 ReactDOM.render(
