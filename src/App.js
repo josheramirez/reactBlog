@@ -10,7 +10,7 @@ import PostDetails from './components/projects/PostDetails'
 import SignIn from './components/auth/SingIn'
 import newPost from './components/post/newPost'
 import createProject from './components/projects/CreateProject'
-import SingUp from './components/auth/SingUp'
+import SignUp from './components/auth/SignUp'
 import Principal from './components/Principal'
 
 class App extends Component{
@@ -20,6 +20,7 @@ class App extends Component{
         <div className="App">
         <NavBar/>
         <Switch>
+        <Route path='/signup' component={SignUp}/>
         <Route path='/signin' component={SignIn}/>
         <Route path='/post/:id' component={PostDetails}/>
           <Route exact path='/' component={Dashboard}/>
