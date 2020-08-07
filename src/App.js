@@ -12,6 +12,7 @@ import newPost from './components/post/newPost'
 import createProject from './components/projects/CreateProject'
 import SignUp from './components/auth/SignUp'
 import Principal from './components/Principal'
+import LateralMenu from './components/dashboard/LateralMenu'
 
 class App extends Component{
   render(){
@@ -20,6 +21,7 @@ class App extends Component{
         <div className="App">
         <NavBar/>
         <Switch>
+        <Route path='/menu' component={LateralMenu}/>
         <Route path='/signup' component={SignUp}/>
         <Route path='/signin' component={SignIn}/>
         <Route path='/post/:id' component={PostDetails}/>
